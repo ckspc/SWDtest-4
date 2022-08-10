@@ -1,0 +1,10 @@
+การทำงานของ single thread event loop
+
+โดยจะเริ่มจากเมื่อฝั่ง Client มีการส่ง Request มา Nodejs จะรับและบันทึกไว้ในรูปแบบ Queue
+และ Node.js จะมี Process ที่เรียกว่า Even loop ซึ่งจะใช้ Single Thread เท่านั้น 
+โดย Event Loop จะทำการประมวลผล Request ทีรับมาโดย
+- ถ้า Request ไม่ต้องใช้ Blocking IO ก็จะทำการประมวลผลและ Response กลับไป
+- ถ้า Request ต้องใช้ Blocking IO เช่นการประมวลผลเกี่ยวกับฐานข้อมูลหรือเกี่ยวกับไฟล์ ซึ่งใช้เวลานานในการประมวลผล จะทำการแตกออก Process ย่อยๆ แทน โดยมีเทคนิคหลายอย่าง
+
+โดยคอนเซ็ปต์คือจะพยายามออกแบบ Code หรือ API เชิง asynchronous หรือ Non-Blocking IO แต่ก็รันผ่าน single thread ได้ 
+
